@@ -1,0 +1,676 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Sacramento");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Raleway:wght@200;300;400&display=swap');
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3rem;
+
+  /*========== Colors ==========*/
+  --hue: 174;
+  --sat: 63%;
+  --first-color: hsl(var(--hue), var(--sat), 40%);
+  --first-color-alt: hsl(var(--hue), var(--sat), 36%);
+  --title-color: white;
+  --text-color: hsl(var(--hue), 8%, 35%);
+  --body-color: hsl(var(--hue), 100%, 99%);
+  --container-color: #25023441;
+  --loading-width: 160px;
+  --loading-heigth: 23px;
+
+  /*========== Font and typography ==========*/
+  --body-font: 'Open Sans', sans-serif;
+  --h1-font-size: 1.5rem;
+  --normal-font-size: .938rem;
+  --tiny-font-size: .625rem;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --h1-font-size: 2.25rem;
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.section {
+ 
+}
+
+.section__title {
+  font-size: var(--h1-font-size);
+  color: var(--title-color);
+  text-align: center;
+ 
+}
+
+.section__height {
+  height: 100vh;
+}
+
+/*=============== LAYOUT ===============*/
+.container {
+  max-width: 968px;
+
+}
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--container-color);
+  z-index: var(--z-fixed);
+  transition: .4s;
+}
+
+/*=============== NAV ===============*/
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__img {
+  width: 32px;
+  border-radius: 50%;
+}
+
+.nav__logo {
+  color: var(--title-color);
+  font-weight: 600;
+}
+
+@media screen and (max-width: 767px) {
+  .nav__menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--container-color);
+    box-shadow: 0 -1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
+    width: 100%;
+    height: 4rem;
+    padding: 0 1rem;
+    display: grid;
+    align-content: center;
+    border-radius: 1.25rem 1.25rem 0 0;
+    transition: .4s;
+  }
+}
+
+.nav__list, 
+.nav__link {
+  display: flex;
+}
+
+.nav__link {
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4px;
+  color: var(--title-color);
+  font-weight: 600;
+}
+
+.nav__list {
+  justify-content: space-around;
+}
+
+.nav__name {
+  font-size: var(--tiny-font-size);
+  /* display: none;*/ /* Minimalist design, hidden labels */
+}
+
+.nav__icon {
+  font-size: 1.5rem;
+}
+
+/*Active link*/
+.active-link {
+  position: relative;
+  color: var(--first-color);
+  transition: .3s;
+}
+
+/* Minimalist design, active link */
+/* .active-link::before{
+  content: '';
+  position: absolute;
+  bottom: -.5rem;
+  width: 4px;
+  height: 4px;
+  background-color: var(--first-color);
+  border-radius: 50%;
+} */
+
+/* Change background header */
+.scroll-header {
+  box-shadow: 0 1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
+}
+
+/*=============== MEDIA QUERIES ===============*/
+/* For small devices */
+/* Remove if you choose, the minimalist design */
+@media screen and (max-width: 320px) {
+
+  .nav__name {
+    display: none;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 576px) {
+ 
+  .nav__list {
+    justify-content: center;
+    column-gap: 3rem;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  body {
+    margin: 0;
+  }
+  .section {
+    padding: 7rem 0 2rem;
+  }
+  .nav {
+    height: calc(var(--header-height) + 1.5rem); /* 4.5rem */
+  }
+  .nav__img {
+    display: none;
+  }
+  .nav__icon {
+    display: none;
+  }
+  .nav__name {
+    font-size: var(--normal-font-size);
+    /* display: block; */ /* Minimalist design, visible labels */
+  }
+  .nav__link:hover {
+    color: var(--first-color);
+  }
+
+  /* First design, remove if you choose the minimalist design */
+  .active-link::before {
+    content: '';
+    position: absolute;
+    bottom: -.75rem;
+    width: 4px;
+    height: 4px;
+    background-color: var(--first-color);
+    border-radius: 50%;
+  }
+
+  /* Minimalist design */
+  /* .active-link::before{
+      bottom: -.75rem;
+  } */
+}
+
+/* For large devices */
+@media screen and (min-width: 1024px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+
+/* nosotros */
+
+.hero{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.2)), 
+  url('../img/atardecer.jpg');
+  background-size: cover;
+  height: 100%;
+  color: white;
+  display: grid;
+  grid-template-rows: max-content ;
+  grid-template-areas: "uno";
+  margin-top: -50px;
+
+} 
+.feliz{
+  grid-area: uno;
+  width: 200px;
+  height: 200px;
+  padding-left:15% ;
+  align-self: center;
+  margin-top: -30vh;
+  font-family: 'Sacramento';
+  letter-spacing: .19em;
+  font-size: 2em;
+  text-shadow: 0 0 20px black;
+  opacity: .8;
+  transform: rotate(-30deg); 
+} 
+.canva{
+  display: block;
+  grid-area: uno;
+  /* border: 2px solid yellow; */
+}
+
+
+/* velaaaaa */
+.regalos{
+  height: 100vh;
+  width: 100%;
+  /* border: 2px solid rgb(177, 24, 124); */
+  background-color:  #1e1934;
+  display: grid;
+  justify-items: center;
+  place-content: center ;
+  /* border: 2px solid yellow; */
+ 
+}
+.letrav {
+  height: min-content;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 100;
+  font-family: 'Sacramento';
+  letter-spacing: .1em;
+  color: white;
+  text-shadow: 0 0 20px black;
+  opacity: .8;
+  /* border: 3px solid blue; */
+}
+
+
+.glow {
+  
+  border-radius: 100%;
+  opacity: .5;
+  
+}
+/* // */
+#candle {
+  position: relative;
+  width: 1.5em;
+  height: 10em;
+  overflow: hidden;
+
+  /* border: 2px solid rgb(176, 18, 18); */
+}
+#candle::before {
+  position: absolute;
+  bottom: 0;
+  left: 8%;
+  content: '';
+  width: 84%;
+  height: 80%;
+  background: linear-gradient(whitesmoke 0, #1e1934 125%);
+  border-radius: .25em;
+  box-sizing: border-box;
+  border: 1px solid #333;
+  
+}
+
+#top {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 2em;
+  background-color: transparent;
+}
+#top #knot {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - .05em);
+  height: .5em;
+  width: .1em;
+  background-color: #0f3146;
+}
+#top .smoke {
+  position: absolute;
+  opacity: 0;
+  border-radius: 100%;
+}
+#top .smoke:nth-child(1) {
+  bottom: .1em;
+  left: calc(50% - .5em);
+  height: .5em;
+  width: .5em;
+  background-color: silver;
+}
+#top .smoke:nth-child(2) {
+  bottom: .6em;
+  left: 50%;
+  height: .6em;
+  width: .6em;
+  background-color: lightgray;
+  animation-delay: .2s;
+}
+#top .smoke:nth-child(3) {
+  bottom: 1.1em;
+  left: 20%;
+  height: .3em;
+  width: .3em;
+  background-color: whitesmoke;
+  animation-delay: .3s;
+}
+#top #flame {
+  position: absolute;
+  bottom: .15em;
+  width: 1.5em;
+  height: 1.6em;
+  background-color: #ffee86;
+  border-radius: 100%;
+  box-shadow: inset 0 0 0 .1em #ffee86;
+  transform: rotateY(30deg);
+  cursor: pointer;
+}
+#top #flame::after {
+  position: absolute;
+  content: '';
+  width: .7em;
+  height: .9em;
+  bottom: 10%;
+  left: calc(50% - .35em);
+  background-color: #ff3200;
+  border-radius: 100%;
+  animation: burnInner 1.5s ease-in-out infinite;
+}
+#top #flame:hover {
+  transition: all .1s ease-in-out;
+  background-color: yellow;
+}
+#top #flame:hover::after {
+  background-color: red;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 1.5em 2.2em rgba(255, 246, 162, 0.75);
+  }
+  50% {
+    box-shadow: 0 0 1.5em 2em rgba(255, 246, 162, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 1.5em 2.2em rgba(255, 246, 162, 0.75);
+  }
+}
+@keyframes burn {
+  0% {
+    height: 1.7em;
+    transform: rotateY(30deg);
+  }
+  50% {
+    height: 1.3em;
+    transform: rotateY(0deg);
+    opacity: .9;
+  }
+  100% {
+    height: 1.7m;
+    transform: rotateY(30deg);
+  }
+}
+@keyframes burnInner {
+  0% {
+    height: .9em;
+    transform: rotateX(0deg);
+  }
+  50% {
+    height: .8em;
+    transform: rotateX(30deg);
+  }
+  100% {
+    height: .9em;
+    transform: rotateX(0deg);
+  }
+}
+@keyframes puff {
+  100% {
+    transform: rotateY(-30deg);
+    opacity: 0;
+  }
+}
+@keyframes puff-bubble {
+  0% {
+    opacity: 0;
+    transform: scale(1, 1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8, 0.8);
+  }
+}
+.glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.burn {
+  animation: burn 1.5s ease-in-out infinite;
+}
+
+.puff {
+  animation: puff .3s ease-in-out forwards;
+}
+
+.puff-bubble {
+  animation: puff-bubble .75s ease-in-out forwards;
+}
+
+.stripe {
+  position: absolute;
+  left: -.25em;
+  width: 2em;
+  height: .25em;
+  background-color: #ff4b6f;
+  transform: rotate(25deg);
+  border-radius: 100%;
+  box-shadow: 1px 1px 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.stripe:nth-child(1) {
+  top: 2.7em;
+  opacity: 1.4;
+}
+
+.stripe:nth-child(2) {
+  top: 4.2em;
+  opacity: 0.9;
+}
+
+.stripe:nth-child(3) {
+  top: 5.7em;
+  opacity: 0.73333;
+}
+
+.stripe:nth-child(4) {
+  top: 7.2em;
+  opacity: 0.65;
+}
+
+.stripe:nth-child(5) {
+  top: 8.7em;
+  opacity: 0.6;
+}
+
+
+/* serenata */
+
+.serenata{
+background-image: url("../img/futbolera.jpg");
+background-size: cover;
+ width: 100%;
+ height: 100vh;
+ display: grid;
+ gap:25px;
+ grid-template-rows: max-content;
+
+/* border: 2px solid green; */
+gap: 15px;
+}
+.letra_serenata{
+  height: min-content;
+  text-align: center;
+  font-size: 2.5em;
+  font-family: 'Tangerine', cursive;
+  font-weight: 400;
+  letter-spacing: .1em;
+  color: white;
+  text-shadow: 0 0 20px black;
+  opacity: .8;
+  /* border: 2px solid red; */
+}
+.letra_serenata2{
+  font-family: 'Nanum Pen Script', cursive;
+  color: white;
+  font-weight: 100;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.letra_serenata3{
+  font-family: 'Nanum Pen Script', cursive;
+  color: white;
+  font-weight: 100;
+  letter-spacing: 2px;
+  text-align: center;
+  animation: infinite teclear 7s steps(16);
+  margin-top: -30%;
+}
+@keyframes teclear{
+  from{
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+  to{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+.video{
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  justify-content: center;
+  margin-top: -50%;
+  /* border: 2px solid yellow;  */
+}
+.videoserenata{
+  width: 250px;
+  height:140px;
+  border-radius: 15px;
+  opacity: 0.9;
+  
+}
+
+.poesiab{
+  background: url("../img/balon.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+/* abrazo */
+
+.abrazo{
+ background: url("../img/pareja.jpeg");
+ background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  /* background-color: yellowgreen; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  display: inline-block;
+  border: solid black 4px;
+  width: var(--loading-width);
+  background-color: white;
+  
+}
+
+.loading-box {
+  height: var(--loading-heigth);
+  width: calc(var(--loading-width) - 5px) ;
+  background-color: blueviolet;
+  /* background-color: aliceblue; */
+  /* animation: loading 5s delay iteration-count direction fill-mode;; */
+  animation: loading 36s infinite ;
+}
+
+#state-message {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 1.5rem;
+  color:white;
+  
+}
+
+@keyframes loading {
+  0% {
+      width: 0;
+  }
+  100% {
+      width: calc(var(--loading-width) - 5px) ;
+  }
+}
+
+
+#title,
+#result {
+  margin-top: 8px;
+  margin-bottom: 10px;
+  font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 2rem;
+    color: white;
+}
+
+#me {
+  margin-top: 8px;
+  margin-bottom: 14px;
+ 
+}
+
+.box {
+  margin-top: 3px;
+}
